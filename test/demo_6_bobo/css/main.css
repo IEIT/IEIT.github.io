@@ -1,0 +1,550 @@
+html {
+	font-family: "Microsoft YaHei", "微软雅黑"，"STXihei", "华文细黑";
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background-color: #5D5D5D;
+}
+
+article,
+footer,
+header,
+time,
+section,
+div {
+	display: block;
+	border-size: 0;
+}
+
+
+h1 {
+	position: absolute;
+	display: block;
+	bottom: 0;
+	margin: 0 0 3px 5px;
+
+	font-family: "SimHei", "黑体", "STHeiti", "华文黑体";
+	font-size: 12px;
+	color: #ffffff;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	position: relative;
+
+	margin: 0 auto;
+	padding: 0 44px 0 44px; 
+	width: 892px;
+	height: 1386px;
+
+	background-color: #fff;
+}
+
+.wrapper section {
+	position: relative;
+	margin-top: 30px;
+}
+
+.wrapper .page-header {
+	position: relative;
+
+	border-bottom: 2px solid #938e8c;
+}
+
+.wrapper .page-header .logo {
+	width: 110px;
+	height: 61px;
+	
+	background-color: #E05D5F;
+}
+
+.wrapper .page-header time {
+	position: absolute;
+
+	right: 0;
+	bottom: 3px;
+
+	font-family: "SimHei", "黑体", "STHeiti", "华文黑体";
+	font-size: 12px;
+	color: #d45d5c;
+}
+
+/* section one */
+.main .intro {
+	position: absolute;
+
+	top: 0;
+	right: 0;
+
+	width: 203px;
+	height: 100%;
+	border-top: 2px solid #cc8091;
+}
+
+.main .intro h2 {
+	display: inline-block;
+
+	margin-top: 8px;
+
+	font-size: 19px;
+	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
+	color: #000000;
+	
+	border-bottom: 2px solid #000000;
+}
+
+.main .intro h2:nth-of-type(1) {
+	margin-top: 16px;
+}
+
+.main .intro h2 span {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.main .intro p:nth-of-type(1) {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-family: "KaiTi", "楷体", "STKaiti", "华文楷体";
+	font-size: 12px;
+	color: #676767;
+}
+
+#issue {
+	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
+	font-size: 116px;
+	color: #75b86b;
+	font-style: italic;
+	border: 0;
+	margin: 0;
+}
+
+.main .intro .intro-box {
+	position: absolute;
+	
+	width: 100%;
+	bottom: -10px;
+	left: 0;
+}
+
+.main .intro h3 {
+	display: inline-block;
+	
+	margin: 0;
+
+	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
+	font-size: 55px;
+	color: #cc8091;
+	/*background-color: blue;*/
+}
+
+.main .intro .intro-box p {
+	display: inline-block;
+	margin: 0;
+	font-family: "KaiTi", "楷体", "STKaiti", "华文楷体";
+	font-size: 12px;
+	color: #ccc;
+}
+
+.main .intro .intro-box p span {
+	font-size: 21px;
+	color: #cc8091;
+}
+
+.main .poster {
+	width: 641px;
+	height: 301px;
+	
+	background: url(../images/pic_1.jpg);
+	background-size: cover;
+}
+
+.mask {
+	height: 100%;
+	width: 191px;
+}
+
+.mask-one {
+	float: left;
+	background-color: rgba(66, 140, 89, 0.5);
+}
+
+.mask-two {
+	float: right;
+	background-color: rgba(204, 117, 128, 0.5);
+}
+
+/*
+ * section-two
+ */
+.main .section-two {
+	display: table;
+	width: 640px;
+}
+
+.main .section-two .abstract {
+	/*folat: left;*/
+	display: table-cell;
+
+	margin: 0;
+	padding-right: 24px;
+}
+
+.main .section-two .what {
+	width: 40%;
+}
+
+.main .section-two .when {
+	width: 36%;
+}
+
+.main .section-two .how {
+	width: 24%;
+}
+
+.main .section-two .abstract h2 {
+	margin-bottom: 12px;
+
+	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
+	font-size: 16px;
+	font-weight: bold;
+
+	text-decoration: underline;
+}
+
+.main .section-two .abstract p {
+	font-family: "SimSun", "宋体", "STSong", "华文宋体";
+	font-size: 12px;
+	color: #767777;
+	line-height: 16px;
+}
+
+.main .section-two .what h2 {
+	color: #418c59;
+}
+
+.main .section-two .when h2 {
+	color: #d2994f;
+}
+
+.main .section-two .how h2 {
+	color: #cc7680;
+}
+.main .section-two .how .percent {
+	position: absolute;
+	display: block;
+
+	bottom: 0;
+
+	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
+	font-size: 12px;
+	color: #231815;
+	line-height: 16px;
+	opacity: 0.7;
+}
+
+.main .section-two .how .percent span {
+	font-style: italic;
+	color: #cd4a48;
+}
+
+/*
+ * section-three
+ */
+
+.main .section-three {
+	margin-top: 70px;
+}
+
+.main .section-three article {
+	width: 415px;
+}
+
+.main .section-three article header {
+	border-bottom: 2px solid #11456b;
+}
+
+.main .section-three article h2 {
+	font-family: "SimHei", "黑体", "STHeiti", "华文黑体";
+	font-size: 42px;
+	color: #11456b;
+}
+
+.main .section-three article h2 span:nth-of-type(1) {
+	font-size: 72px;
+	font-weight: bold;
+	font-style: italic;
+	color: #f5e327;
+}
+
+.main .section-three article h2 span:nth-of-type(2) {
+	font-size: 33px;
+	font-weight: bold;
+}
+
+.main .section-three article .content {
+	position: relative;
+	margin-top: 20px;
+
+	font-family: "SimSun", "宋体", "STSong", "华文宋体";
+	font-size: 12px;
+
+	line-height: 16px;
+}
+
+.main .section-three article .content .para-cn {
+	text-indent: 2em;
+}
+
+.main .section-three article .content span {
+	/*font-family: "Microsoft YaHei", "微软雅黑"，"SimHei", "黑体";*/
+	float: left;
+	margin: 0 5px 0px -5px; 
+	font-family: "SimHei", "黑体";
+	font-size: 70px;
+	color: #f5e327;
+
+	line-height: 70px;
+}
+
+.main .section-three article .content img {
+	float: right;
+	clear: left;
+	padding: 20px 10px 20px 15px;
+}
+
+.main .section-three .image {
+	position: absolute;
+
+	top: 0;
+	right: 0;
+	width: 458px;
+	height: 275px;
+
+	background: url(../images/pic_2.jpg);
+	background-size: cover;
+}
+
+.main .section-three .image .title-mask {
+	position: absolute;
+
+	bottom: 0;
+	width: 100%;
+	height: 61px;
+	background-color: rgba(4, 0, 0, 0.4);
+}
+
+.main .section-three .image .title-mask .image-title {
+	position: absolute;
+
+	top: 50%;
+	margin-top: -22px;
+
+	margin-left: 30px;
+	height: 44px;
+	border-left: 3px solid #72b16a;
+
+	line-height: 44px;
+}
+
+.main .section-three .image .title-mask .image-title h2 {
+	display: inline;
+	
+	margin-left: 0.5em;
+	font-family: "Microsoft YaHei", "微软雅黑"，"SimHei", "黑体";
+	font-size: 26px;
+	font-style: normal;
+	color: #fff;
+}
+
+.main .section-three .image .title-mask .image-title h3 {
+	display: inline;
+	
+	margin-left: 0.5em;
+
+	font-family: "Microsoft YaHei", "微软雅黑"，"SimHei", "黑体";
+	font-size: 12px;
+	font-style: italic;
+	color: #72b16a;
+}
+
+.main .section-three .back-cover {
+	position: absolute;
+
+	bottom: 0;
+	right: 0;
+
+	width: 459px;
+	height: 318px;
+
+	background-color: #eeeed5;
+}
+
+.main .section-three .back-cover ul {
+	margin-top: 35px;
+}
+
+.main .section-three .back-cover .angle {
+	position: relative;
+
+	top: -10px;
+	margin-right: 0.5em;
+
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 10px solid #1a4569;
+}
+
+.main .section-three .back-cover ul li {
+	margin-top: 20px;
+	width: 350px;
+
+	font-family: "SimSun", "宋体", "STSong", "华文宋体";
+	font-size: 16px;
+	color: #5a5b5b;
+
+	list-style: none;
+	height: 1.1em;
+	overflow: hidden;
+    text-align: justify;
+    text-justify: distribute-all-lines;
+}
+
+.main .section-three .back-cover ul li span {
+	font-family: "SimSun", "宋体", "STSong", "华文宋体";
+	font-size: 12px;
+	color: #5a5b5b;
+	font-style: italic;
+}
+
+.main .section-three .back-cover ul li.cn:after {
+    content: "__________________________________________";
+    font-size: 100px;
+    line-height: 16px;
+}
+
+.main .section-three .back-cover ul li.en:after {
+    content: " _______";
+}
+
+.main .section-three .container {
+	position: absolute;
+
+	bottom: 0;
+	height: 160px;
+	width: 100%;
+
+	font-family: "SimHei", "黑体", "STHeiti", "华文黑体";
+}
+
+.main .section-three .container .back-box {
+	position: relative;
+
+	width: 260px;
+	height: 160px;
+	
+	background-color: #d45e5c;
+
+	text-align: center;
+	color: #fff;
+}
+
+.main .section-three .container .back-box h2 {
+	display: inline-block;
+
+	margin-top: 37px;
+
+	font-family: "Microsoft YaHei", "微软雅黑"，"SimHei", "黑体";
+	font-size: 110px;
+}
+
+.main .section-three .container .back-box div {
+	position: relative;
+	display: inline-block;
+	
+	top: -10px;
+	padding-left: 0.5em;
+	height: 86px;
+	border-left: 2px solid #ffffff;
+
+	text-align: left;
+}
+
+.main .section-three .container .back-box h3 {
+	font-size: 21px;
+	font-style: italic;
+	line-height: 24px;
+}
+
+.main .section-three .container .back-box p {
+	margin-top: 6px;
+	font-size: 12px;
+}
+
+.main .section-three .container blockquote {
+	position: absolute;
+	display: inline-block;
+	
+	top: 0;
+	right: 10px;
+	margin: 0;
+	padding: 0;
+	width: 170px;
+	
+	font-size: 14px;
+	font-style: italic;
+	color: #5a5b5b;
+
+	line-height: 20px;
+}
+
+.main .section-three .container blockquote p {
+	margin-top: 15px;
+}
+
+.main .section-three .container blockquote span {
+	margin-left: -50px;
+	margin-bottom: -50px;
+
+	font-size: 72px;
+	color: #d45d5c;
+	line-height: 72px;
+}
+
+.main .section-three .container blockquote span:nth-of-type(1) {
+	float: left;
+	margin-right: 15px;
+}
+
+.main .section-three .container blockquote span:nth-of-type(2) {
+	float: right;
+	margin-top: -17px;
+	margin-right: -12px;
+}
+
+.wrapper footer {
+	margin-top: 40px;
+	padding-top: 5px;
+	border-top: 1px solid #938e8c;
+
+	text-align: right;
+
+	font-family: "SimHei", "黑体", "STHeiti", "华文黑体";
+	font-size: 12px;
+	color: #d45d5c;
+}
+
