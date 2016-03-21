@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 html {
 	font-family: "Microsoft YaHei", "微软雅黑"，"STXihei", "华文细黑";
 	-ms-text-size-adjust: 100%;
@@ -16,7 +18,7 @@ time,
 section,
 div {
 	display: block;
-	border-size: 0;
+	border-width: 0;
 }
 
 
@@ -39,13 +41,14 @@ h6,
 p {
 	margin: 0;
 	padding: 0;
+	font-weight: normal;
 }
 
 .wrapper {
 	position: relative;
 
 	margin: 0 auto;
-	padding: 0 44px 0 44px; 
+	padding: 0 44px 0 44px;
 	width: 892px;
 	height: 1386px;
 
@@ -66,7 +69,7 @@ p {
 .wrapper .page-header .logo {
 	width: 110px;
 	height: 61px;
-	
+
 	background-color: #E05D5F;
 }
 
@@ -81,7 +84,11 @@ p {
 	color: #d45d5c;
 }
 
-/* section one */
+/*
+ * section one
+ */
+
+/* 700 intro-box */
 .main .intro {
 	position: absolute;
 
@@ -94,27 +101,17 @@ p {
 }
 
 .main .intro h2 {
-	display: inline-block;
-
-	margin-top: 8px;
-
-	font-size: 19px;
-	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
-	color: #000000;
-	
-	border-bottom: 2px solid #000000;
-}
-
-.main .intro h2:nth-of-type(1) {
 	margin-top: 16px;
-}
 
-.main .intro h2 span {
 	font-size: 24px;
-	font-weight: bold;
+	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
+	font-variant: small-caps;
+	text-transform: capitalize;
+	text-decoration: underline;
+	color: #000000;
 }
 
-.main .intro p:nth-of-type(1) {
+.main .intro p {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	font-family: "KaiTi", "楷体", "STKaiti", "华文楷体";
@@ -123,50 +120,48 @@ p {
 }
 
 #issue {
+	margin-left: -15px;
+
 	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
 	font-size: 116px;
+	font-style: oblique;
+	line-height: 116px;
+
 	color: #75b86b;
-	font-style: italic;
-	border: 0;
-	margin: 0;
 }
 
-.main .intro .intro-box {
-	position: absolute;
-	
-	width: 100%;
-	bottom: -10px;
-	left: 0;
-}
-
-.main .intro h3 {
+.main .intro time {
 	display: inline-block;
-	
+
 	margin: 0;
 
 	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
 	font-size: 55px;
 	color: #cc8091;
-	/*background-color: blue;*/
 }
 
-.main .intro .intro-box p {
-	display: inline-block;
-	margin: 0;
+.main .intro span:nth-of-type(3) {
+	position: relative;
+
 	font-family: "KaiTi", "楷体", "STKaiti", "华文楷体";
 	font-size: 12px;
 	color: #ccc;
 }
 
-.main .intro .intro-box p span {
+.main .intro span:nth-of-type(2) {
+	position: absolute;
+
+	bottom: 12px;
 	font-size: 21px;
+
 	color: #cc8091;
 }
 
+ /* poster image */
 .main .poster {
 	width: 641px;
 	height: 301px;
-	
+
 	background: url(../images/pic_1.jpg);
 	background-size: cover;
 }
@@ -189,13 +184,13 @@ p {
 /*
  * section-two
  */
+
 .main .section-two {
 	display: table;
 	width: 640px;
 }
 
 .main .section-two .abstract {
-	/*folat: left;*/
 	display: table-cell;
 
 	margin: 0;
@@ -214,7 +209,7 @@ p {
 	width: 24%;
 }
 
-.main .section-two .abstract h2 {
+.main .section-two .abstract h3 {
 	margin-bottom: 12px;
 
 	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
@@ -231,15 +226,15 @@ p {
 	line-height: 16px;
 }
 
-.main .section-two .what h2 {
+.main .section-two .what h3 {
 	color: #418c59;
 }
 
-.main .section-two .when h2 {
+.main .section-two .when h3 {
 	color: #d2994f;
 }
 
-.main .section-two .how h2 {
+.main .section-two .how h3 {
 	color: #cc7680;
 }
 .main .section-two .how .percent {
@@ -279,6 +274,7 @@ p {
 .main .section-three article h2 {
 	font-family: "SimHei", "黑体", "STHeiti", "华文黑体";
 	font-size: 42px;
+	line-height: 42px;
 	color: #11456b;
 }
 
@@ -290,18 +286,23 @@ p {
 }
 
 .main .section-three article h2 span:nth-of-type(2) {
+	display: inline-block;
+	padding: 10px 0 16px 0;
 	font-size: 33px;
 	font-weight: bold;
+	line-height: 33px;
 }
 
+/* article content */
 .main .section-three article .content {
 	position: relative;
 	margin-top: 20px;
 
 	font-family: "SimSun", "宋体", "STSong", "华文宋体";
 	font-size: 12px;
-
 	line-height: 16px;
+
+	color: #767777;
 }
 
 .main .section-three article .content .para-cn {
@@ -309,20 +310,20 @@ p {
 }
 
 .main .section-three article .content span {
-	/*font-family: "Microsoft YaHei", "微软雅黑"，"SimHei", "黑体";*/
 	float: left;
-	margin: 0 5px 0px -5px; 
-	font-family: "SimHei", "黑体";
-	font-size: 70px;
-	color: #f5e327;
+	margin: 0 9px 10px 0;
 
+	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
+	font-size: 70px;
 	line-height: 70px;
+
+	color: #f5e327;
 }
 
 .main .section-three article .content img {
 	float: right;
 	clear: left;
-	padding: 20px 10px 20px 15px;
+	padding: 15px 6px 15px 15px;
 }
 
 .main .section-three .image {
@@ -352,7 +353,7 @@ p {
 	top: 50%;
 	margin-top: -22px;
 
-	margin-left: 30px;
+	margin-left: 40px;
 	height: 44px;
 	border-left: 3px solid #72b16a;
 
@@ -361,20 +362,18 @@ p {
 
 .main .section-three .image .title-mask .image-title h2 {
 	display: inline;
-	
+
 	margin-left: 0.5em;
-	font-family: "Microsoft YaHei", "微软雅黑"，"SimHei", "黑体";
+	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
 	font-size: 26px;
-	font-style: normal;
 	color: #fff;
 }
 
 .main .section-three .image .title-mask .image-title h3 {
 	display: inline;
-	
-	margin-left: 0.5em;
 
-	font-family: "Microsoft YaHei", "微软雅黑"，"SimHei", "黑体";
+	margin-left: 0.5em;
+	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
 	font-size: 12px;
 	font-style: italic;
 	color: #72b16a;
@@ -411,34 +410,27 @@ p {
 
 .main .section-three .back-cover ul li {
 	margin-top: 20px;
-	width: 350px;
+
+	list-style: none;
 
 	font-family: "SimSun", "宋体", "STSong", "华文宋体";
 	font-size: 16px;
 	color: #5a5b5b;
 
-	list-style: none;
-	height: 1.1em;
 	overflow: hidden;
-    text-align: justify;
-    text-justify: distribute-all-lines;
 }
 
-.main .section-three .back-cover ul li span {
+.main .section-three .back-cover ul li span:nth-of-type(2) {
+	position: absolute;
+
+	right: 2em;
 	font-family: "SimSun", "宋体", "STSong", "华文宋体";
 	font-size: 12px;
-	color: #5a5b5b;
 	font-style: italic;
-}
+	line-height: 18px;
+	color: #5a5b5b;
 
-.main .section-three .back-cover ul li.cn:after {
-    content: "__________________________________________";
-    font-size: 100px;
-    line-height: 16px;
-}
-
-.main .section-three .back-cover ul li.en:after {
-    content: " _______";
+	background-color:#eeeed5;
 }
 
 .main .section-three .container {
@@ -456,27 +448,25 @@ p {
 
 	width: 260px;
 	height: 160px;
-	
-	background-color: #d45e5c;
 
 	text-align: center;
 	color: #fff;
+	background-color: #d45e5c;
 }
 
-.main .section-three .container .back-box h2 {
+.main .section-three .container .back-box span {
 	display: inline-block;
 
-	margin-top: 37px;
-
-	font-family: "Microsoft YaHei", "微软雅黑"，"SimHei", "黑体";
+	font-family: "Microsoft YaHei", "微软雅黑", "STHeiti", "华文黑体";
 	font-size: 110px;
+	line-height: 160px;
 }
 
 .main .section-three .container .back-box div {
 	position: relative;
 	display: inline-block;
-	
-	top: -10px;
+
+	margin-top: -26px;
 	padding-left: 0.5em;
 	height: 86px;
 	border-left: 2px solid #ffffff;
@@ -484,32 +474,33 @@ p {
 	text-align: left;
 }
 
-.main .section-three .container .back-box h3 {
+.main .section-three .container .back-box p:nth-of-type(1) {
 	font-size: 21px;
 	font-style: italic;
 	line-height: 24px;
 }
 
-.main .section-three .container .back-box p {
+.main .section-three .container .back-box p:nth-of-type(2) {
 	margin-top: 6px;
 	font-size: 12px;
+	line-height: 18px;
 }
 
 .main .section-three .container blockquote {
 	position: absolute;
 	display: inline-block;
-	
+
 	top: 0;
 	right: 10px;
 	margin: 0;
 	padding: 0;
 	width: 170px;
-	
+
 	font-size: 14px;
 	font-style: italic;
 	color: #5a5b5b;
 
-	line-height: 20px;
+	line-height: 16px;
 }
 
 .main .section-three .container blockquote p {
@@ -521,23 +512,24 @@ p {
 	margin-bottom: -50px;
 
 	font-size: 72px;
-	color: #d45d5c;
 	line-height: 72px;
+
+		color: #d45d5c;
 }
 
 .main .section-three .container blockquote span:nth-of-type(1) {
 	float: left;
-	margin-right: 15px;
+	margin-right: 20px;
 }
 
 .main .section-three .container blockquote span:nth-of-type(2) {
 	float: right;
-	margin-top: -17px;
-	margin-right: -12px;
+	margin-top: -14px;
+	margin-right: -17px;
 }
 
 .wrapper footer {
-	margin-top: 40px;
+	margin-top: 38px;
 	padding-top: 5px;
 	border-top: 1px solid #938e8c;
 
@@ -547,4 +539,3 @@ p {
 	font-size: 12px;
 	color: #d45d5c;
 }
-
