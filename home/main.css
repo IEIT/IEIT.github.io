@@ -6,8 +6,9 @@ html, body {
 
 body {
 	background-image: url(bg.gif);
-	background-size: 100%;
+	background-size: contain;
 	background-repeat: repeat-y;
+
 }
 
 hr {
