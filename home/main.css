@@ -52,6 +52,8 @@ header img {
 
 	width: 160px;
 	height: 160px;
+
+	-webkit-user-select:none;
 }
 
 main {

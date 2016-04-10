@@ -1,0 +1,87 @@
+body {
+	padding: 20px;
+}
+
+div {
+	background-color: #fff;
+	border: 1px solid #000;
+	padding: 20px;
+}
+
+h1 {
+	font-size: 2em;
+	margin: 0;
+}
+
+.wrapper {
+	background-color: #eee;
+	overflow: hidden;
+
+	min-width: 700px;
+}
+
+.wrapper .logo {
+	display: block;
+	background-color: red;
+
+	padding: 0;
+	width: 80px;
+	height: 80px;
+}
+
+.wrapper .main {
+	margin-left: 220px;
+	margin-right: 140px;
+}
+
+.wrapper .team-box {
+	float: left;
+
+	width: 160px;
+}
+
+.wrapper .team-box #team-logo {
+	float: left;
+
+	/*background-color: green;*/
+	border: 2px ridge #fff;
+	border-radius: 10px;
+	background: url(../images/logo.png);
+	background-size: cover;
+}
+
+.wrapper .team-box #team-name {
+	float: right;
+	
+	padding: 0;
+	height: 80px;
+	width: 58px;
+	border-width: 0;
+	text-align: center;
+}
+
+.wrapper .member-box {
+	float: right;
+
+	width: 80px;
+}
+
+.wrapper .member-box #member-one {
+	background: url(../images/iuril.png);
+	background-size: cover;
+
+	margin-bottom: 20px;
+
+}
+
+.wrapper .member-box #member-two {
+	background: url(../images/xin.png);
+	background-size: cover;
+
+	margin-bottom: 20px;
+}
+
+.wrapper .member-box #member-three {
+	background: url(../images/bobo.png);
+	background-size: cover;
+}
