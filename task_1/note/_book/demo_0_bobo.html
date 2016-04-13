@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Note0-0:一台电脑绑定两个github帐号教程</title>
+
+    <meta charset="UTF-8"/>
+
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+
+    <meta name="HandheldFriendly" content="true"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+    <link href="./asset/farbox/basic.css" type="text/css" rel="stylesheet"/>
+    <link href="./asset/farbox/main.css" type="text/css" rel="stylesheet"/>
+
+    <style type="text/css">
+        
+            span.md_line{margin-bottom:0.5em; display:block; line-height:1.89}
+            .md_line br{ display: none;}
+            
+    </style>
+
+    <script>
+        var flowchat_options = {
+            'x': 0, 'y': 0, 'line-width': 1, 'line-length': 50, 'text-margin': 10, 'font-size': 13,
+            'font-color': '#3c3c3c', 'line-color': '#666666', 'element-color': '#666666', 'fill': 'transparent',
+            'yes-text': 'yes', 'no-text': 'no', 'arrow-end': 'block', 'class': 'flowchart', 'scale': 1,
+            'symbols': { 'start': {}, 'end': {}, 'condition': {}, 'inputoutput': {}, 'operation': {}, 'subroutine': {}}
+        }
+    </script>
+    <script type="text/javascript" src="./asset/other/raphael-min.js"></script>
+    <script type="text/javascript" src="./asset/other/flowchart.js"></script>
+    <script type="text/javascript" src="./asset/other/echarts.min.js"></script>
+
+
+</head>
+
+<body>
+    
+        <a href="./index.html" id="go_to_home"> &lt; home </a>
+    
+    <div id="sidebar">
+        <ul id="sidebar_body">
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="./demo_0_bobo.html" class="selected">Note0-0:一台电脑绑定两个github帐号教程</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="./demo_3_bobo.html" class="">Note 1-3:图片阻止选中及CSS绘制三角形等</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="./demo_7_bobo.html" class="">Note 1-7:margin 叠加，盒子等分</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="./references.html" class="">参考资料</a>
+                </li>
+            
+
+            
+        
+        </ul>
+    </div>
+
+    <div id="main">
+        <div class="content_body">
+            <h1 class="title"> Note0-0:一台电脑绑定两个github帐号教程 </h1>
+            <div class="doc_post"> <h2 id="toc_0">思路</h2>
+<p class="md_block">
+    <span class="md_line">ssh 方式链接到 Github，需要唯一的公钥，如果想同一台电脑绑定两个Github 帐号，需要两个条件:</span>
+</p>
+
+<ol>
+<li>能够生成两对 私钥/公钥</li>
+<li>push 时，可以区分两个账户，推送到相应的仓库</li>
+</ol>
+<p class="md_block">
+    <span class="md_line">解决方案:</span>
+</p>
+
+<ol>
+<li>生成 私钥/公钥 时，密钥文件命名避免重复</li>
+<li>设置不同 Host 对应同一 HostName 但密钥不同</li>
+<li>取消 git 全局<code>用户名/邮箱</code>设置，为每个仓库独立设置 用户名/邮箱</li>
+</ol>
+
+<h2 id="toc_1">操作方法</h2>
+
+<ol>
+<li>查看已有 <code>密钥</code>
+
+<ul>
+<li>Mac 下输入命令 <code>ls ~/.ssh/</code>，看到 <code>id_rsa</code> 与 <code>id_rsa_pub</code> 则说明已经有一对密钥。</li>
+</ul></li>
+<li>生成新的公钥，并命名为 <code>id_rsa_2</code> (保证与之前密钥文件名称不同即可)
+
+<ul>
+<li><code>ssh-keygen -t rsa -f ~/.ssh/id_rsa_2 -C &quot;yourmail@xxx.com&quot;</code></li>
+</ul></li>
+<li><p class="md_block">
+    <span class="md_line">在 <code>.ssh</code> 文件夹下新建 <code>config</code> 文件并编辑，另不同 Host 实际映射到同一 <code>HostName</code>，但密钥文件不同。Host 前缀可自定义，例子中<code>ieit</code></span>
+</p>
+
+<pre><code># default                                                                       
+Host github.com
+HostName github.com
+User git
+IdentityFile ~/.ssh/id_rsa
+# two                                                                           
+Host ieit.github.com
+HostName github.com
+User git
+IdentityFile ~/.ssh/id_rsa_2</code></pre></li>
+<li><p class="md_block">
+    <span class="md_line">将生成的 <code>id_rsa.pub</code>，<code>id_rsa_2.pub</code>内容copy 到对应的 repo</span>
+</p>
+
+<ul>
+<li>参考教程: <a href="http://www.xuanfengge.com/using-ssh-key-link-github-photo-tour.html">使用SSH密钥连接Github【图文教程】</a></li>
+</ul></li>
+<li><p class="md_block">
+    <span class="md_line"> 测试 ssh 链接</span>
+</p></li>
+</ol>
+
+<pre><code>ssh -T git@ieit.github.com
+ssh -T git@github.com
+# Hi IEIT! You've successfully authenticated, but GitHub does not provide shell access.
+# 出现上边这句，表示链接成功</code></pre>
+
+<ol>
+<li>将项目 <code>clone</code> 到本地， <code>folder-name</code> 是本地文件夹路径</li>
+</ol>
+
+<pre><code>git clone git@github.com:whatever folder-name</code></pre>
+
+<ol>
+<li>取消全局 用户名/邮箱设置，并进入项目文件夹单独设置</li>
+</ol>
+
+<pre><code># 取消全局 用户名/邮箱 配置
+git config –global –unset user.name
+git config –global –unset user.email
+# 单独设置每个repo 用户名/邮箱
+git config user.email “xxxx@xx.com”
+git config user.name “xxxx”</code></pre>
+
+<ol>
+<li>命令行进入项目目录，重建 origin (whatever 为相应项目地址)</li>
+</ol>
+
+<pre><code>git remote rm origin
+git remote add origin git@ieit.github.com:whatever</code></pre>
+
+<ol>
+<li>成功，可以 push 测试一下</li>
+</ol>
+
+<pre><code>git push origin master</code></pre>
+
+<h2 id="toc_2">参考资料</h2>
+
+<ul>
+<li><a href="http://notes.seirhsiao.com/2016/01/24/2014-09-30-github-multiple-account-and-multiple-repository/">如何同一台电脑配置多个git或github账号</a></li>
+<li><a href="http://blog.lessfun.com/blog/2014/06/11/two-github-account-in-one-client/">在一台电脑上使用两个Github账号</a></li>
+</ul> </div>
+        </div>
+
+    </div>
+
+
+
+
+
+<script>
+    // auto focus for menu
+    window.onload = function(){
+        var sidebar = document.getElementById('sidebar');
+        var current = document.getElementsByClassName('selected')[0];
+        if (current && sidebar){
+            sidebar.scrollTop = current.offsetTop - sidebar.clientHeight/2 + 100
+        }
+    };
+</script>
+
+
+
+
+</body>
+
+</html>
