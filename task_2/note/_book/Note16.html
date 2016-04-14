@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>代码简化、JSON、正则表达</title>
+
+    <meta charset="UTF-8"/>
+
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+
+    <meta name="HandheldFriendly" content="true"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+    <link href="./asset/farbox/basic.css" type="text/css" rel="stylesheet"/>
+    <link href="./asset/farbox/main.css" type="text/css" rel="stylesheet"/>
+
+    <style type="text/css">
+        
+            span.md_line{margin-bottom:0.5em; display:block; line-height:1.89}
+            .md_line br{ display: none;}
+            
+    </style>
+
+    <script>
+        var flowchat_options = {
+            'x': 0, 'y': 0, 'line-width': 1, 'line-length': 50, 'text-margin': 10, 'font-size': 13,
+            'font-color': '#3c3c3c', 'line-color': '#666666', 'element-color': '#666666', 'fill': 'transparent',
+            'yes-text': 'yes', 'no-text': 'no', 'arrow-end': 'block', 'class': 'flowchart', 'scale': 1,
+            'symbols': { 'start': {}, 'end': {}, 'condition': {}, 'inputoutput': {}, 'operation': {}, 'subroutine': {}}
+        }
+    </script>
+    <script type="text/javascript" src="./asset/other/raphael-min.js"></script>
+    <script type="text/javascript" src="./asset/other/flowchart.js"></script>
+    <script type="text/javascript" src="./asset/other/echarts.min.js"></script>
+
+
+</head>
+
+<body>
+    
+        <a href="./index.html" id="go_to_home"> &lt; home </a>
+    
+    <div id="sidebar">
+        <ul id="sidebar_body">
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="./Note13-15.html" class="">排序、数组遍历</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="./Note16.html" class="selected">代码简化、JSON、正则表达</a>
+                </li>
+            
+
+            
+        
+        </ul>
+    </div>
+
+    <div id="main">
+        <div class="content_body">
+            <h1 class="title"> 代码简化、JSON、正则表达 </h1>
+            <div class="doc_post"> <h2 id="toc_1">正则表达式匹配</h2>
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><a href="http://wangwei007.blog.51cto.com/68019/1108694">正则匹配中文及常用正则表达式</a></span>
+</p>
+
+<h2 id="toc_2">JSON 对象</h2>
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><a href="http://javascript.ruanyifeng.com/stdlib/json.html">参考</a><br /></span>
+    <span class="md_line md_line_dom_embed"><a href="http://cst.is-programmer.com/posts/21823.html">JavaScript对Json的增删改属性</a></span>
+</p>
+
+<h2 id="toc_3">代码简化</h2>
+
+<pre><code>var $ = function (id) {
+    return document.getElementById(id);
+}</code></pre>
+
+<h2 id="toc_4">判断对象是否为空</h2>
+
+<pre><code>isEmptyObject: function( obj ) {
+    for ( var name in obj ) {
+        return false;
+    }
+    return true;
+}</code></pre>
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof">typeof MDN</a><br /></span>
+    <span class="md_line md_line_dom_embed"><a href="http://www.cnblogs.com/xyzhanjiang/p/4145951.html">数据类型判断</a></span>
+</p>
+
+<h2 id="toc_5">弹出框</h2>
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><a href="http://blog.csdn.net/huileiforever/article/details/9464659">JS的三种最常见的对话框</a></span>
+</p> </div>
+        </div>
+
+    </div>
+
+
+
+
+
+<script>
+    // auto focus for menu
+    window.onload = function(){
+        var sidebar = document.getElementById('sidebar');
+        var current = document.getElementsByClassName('selected')[0];
+        if (current && sidebar){
+            sidebar.scrollTop = current.offsetTop - sidebar.clientHeight/2 + 100
+        }
+    };
+</script>
+
+
+
+
+</body>
+
+</html>
