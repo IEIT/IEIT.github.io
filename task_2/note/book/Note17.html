@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>代码简化、JSON、正则表达</title>
+    <title>select 与 radio监听，JSON 转 Array</title>
 
     <meta charset="UTF-8"/>
 
@@ -67,7 +67,20 @@
 
             
                 <li class="level_1 file">
-                    <a href="./Note16.html" class="selected">代码简化、JSON、正则表达</a>
+                    <a href="./Note16.html" class="">代码简化、JSON、正则表达</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="./Note17.html" class="selected">select 与 radio监听，JSON 转 Array</a>
                 </li>
             
 
@@ -78,41 +91,67 @@
 
     <div id="main">
         <div class="content_body">
-            <h1 class="title"> 代码简化、JSON、正则表达 </h1>
-            <div class="doc_post"> <h2 id="toc_1">正则表达式匹配</h2>
+            <h1 class="title"> select 与 radio监听，JSON 转 Array </h1>
+            <div class="doc_post"> <h2 id="toc_1">select</h2>
+
+<ul>
+<li><p class="md_block">
+    <span class="md_line">select 所选选项的值(selectedIndex:获取select组分配的索引id)</span>
+</p>
 <p class="md_block">
-    <span class="md_line md_line_dom_embed"><a href="http://wangwei007.blog.51cto.com/68019/1108694">正则匹配中文及常用正则表达式</a></span>
+    <span class="md_line md_line_dom_embed"><code>obj.options[obj.selectedIndex].value;</code></span>
+</p></li>
+<li><p class="md_block">
+    <span class="md_line">监视 select 变化 </span>
 </p>
 
-<h2 id="toc_2">JSON 对象</h2>
+<pre><code>window.onload = function(){
+document.getElementById("selectid").onchange=_f;
+}</code></pre></li>
+</ul>
+
+<h2 id="toc_2">radio 是否选中</h2>
 <p class="md_block">
-    <span class="md_line md_line_dom_embed"><a href="http://javascript.ruanyifeng.com/stdlib/json.html">参考</a><br /></span>
-    <span class="md_line md_line_dom_embed"><a href="http://cst.is-programmer.com/posts/21823.html">JavaScript对Json的增删改属性</a></span>
+    <span class="md_line">判断 <code>radio[i].checked</code> 为 <code>true</code> or <code>false</code><br /></span>
+    <span class="md_line md_line_dom_embed"><a href="http://blog.csdn.net/magi1201/article/details/44465557"> javascript 获取表单中radio选中值</a></span>
 </p>
 
-<h2 id="toc_3">代码简化</h2>
+<h2 id="toc_3">JSON 转为 Array 数组</h2>
 
-<pre><code>var $ = function (id) {
-    return document.getElementById(id);
-}</code></pre>
-
-<h2 id="toc_4">判断对象是否为空</h2>
-
-<pre><code>isEmptyObject: function( obj ) {
-    for ( var name in obj ) {
-        return false;
-    }
-    return true;
-}</code></pre>
-<p class="md_block">
-    <span class="md_line md_line_dom_embed"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof">typeof MDN</a><br /></span>
-    <span class="md_line md_line_dom_embed"><a href="http://www.cnblogs.com/xyzhanjiang/p/4145951.html">数据类型判断</a></span>
+<ul>
+<li>JQ <code>var arr = $.map(obj, function(el) { return el });</code></li>
+<li><p class="md_block">
+    <span class="md_line">原生写法</span>
 </p>
 
-<h2 id="toc_5">弹出框</h2>
-<p class="md_block">
-    <span class="md_line md_line_dom_embed"><a href="http://blog.csdn.net/huileiforever/article/details/9464659">JS的三种最常见的对话框</a></span>
-</p> </div>
+<pre><code>var data = {
+"0": "1",
+"1": "2",
+"2": "3",
+"3": "4"
+};
+var arr = [];
+for (var prop in data) {
+arr.push(data[prop]);
+}
+console.log(arr);</code></pre></li>
+<li><p class="md_block">
+    <span class="md_line"><code>toArray()</code>？</span>
+</p></li>
+<li><p class="md_block">
+    <span class="md_line"><code>JSON.parse(json)</code>？</span>
+</p></li>
+</ul>
+
+<h2 id="toc_4">抛出错误</h2>
+
+<pre><code>throw "Error2"; // generates an exception with a string value</code></pre>
+
+<h2 id="toc_5">待研究</h2>
+
+<ul>
+<li><code>oninput &amp; onpropertychange</code></li>
+</ul> </div>
         </div>
 
     </div>
