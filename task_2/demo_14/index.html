@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>IFE JavaScript Task 01</title>
-  </head>
-<body>
+<!-- Author:zhang625@github -->
 
-  <h3>污染城市列表</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>IFE JavaScript Task 01</title>
+</head>
+<body>
+		<h3>污染城市列表</h3>
   <ul id="aqi-list">
 <!--   
     <li>第一名：福州（样例），10</li>
   	<li>第二名：福州（样例），10</li> -->
-  </ul>
-  <hr>
-  <h3>所有城市列表</h3>
-  <ul id="aqi-all">
-    
   </ul>
 
 <script type="text/javascript">
@@ -23,7 +19,6 @@
 var aqiData = [
   ["北京", 90],
   ["上海", 50],
-  ["郑州", 120],
   ["福州", 10],
   ["广州", 50],
   ["成都", 90],
@@ -37,45 +32,54 @@ var aqiData = [
   遍历读取aqiData中各个城市的数据
   将空气质量指数大于60的城市显示到aqi-list的列表中
   */
-  var res = '',
-      allData = '',
-  	  ranking = [];
-      num = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+/*  
+   //方法一：这是最基础的方法，很简单，但是会导致性能的损耗，特别是当数组过多的时候
+   for(i=0;i<aqiData.length;i++){
+  if(aqiData[i][1]>60){
+  document.getElementById('aqi-list').innerHTML+="<li>"+aqiData[i][0]+","+aqiData[i][1]+"</li>";
+    }
+    }*/
+	
+/*
+	//方法二：主要思路为，第一，将满足要求的数据挑选出来放入一个新的数组里面，再对其进行排序。第二，将新的数组保存为需要的格式，然后放入一个字符串里，再将字符串放入文档里面
+	var aqidata1=new Array();
+	var aiqdata2="";//建立后的一个数组和一个字符串，分别放入筛选
+	
+	for (var i = 0,j=aqiData.length; i < j; i++) {
+		if (aqiData[i][1]>60) {
+			aqidata1.push(aqiData[i]);
+		}
+	}
 
-  // 将超过60城市写入新数组
-  for(var i = 0; i < aqiData.length; ++i) {
-  	if (aqiData[i][1] > 60) {		
-  			ranking.push(aqiData[i]);
-  	}
-  }
+	aqidata1.sort(function(a,b){
+		return b[1]-a[1];
+	});
 
-  // 对超过60城市从大到小排序
-  for(var i = 0; i < ranking.length; ++i) {
-  	for(var j = i + 1; j < ranking.length; ++j){
-  		if (ranking[i][1] < ranking[j][1]) {
-  			tmp = ranking[i];
-  			ranking[i] = ranking[j];
-  			ranking[j] = tmp;
-  			console.log(tmp);
-  		}
-  	}
-  }
+	
+	for (var i = 0,j=aqidata1.length; i < j; i++) {
+		aiqdata2+="<li>no."+(i+1)+": "+aqidata1[i][0]+","+aqidata1[i][1]+"</li>";
+		}
 
-  // 遍历超过60的城市
-  for(var i = 0; i < ranking.length; ++i) {
-  	res += '<li>第' + num[i + 1] + '名：' + ranking[i][0] + '--' + ranking[i][1] + '</li>';
-  }
+	var aqiList=document.getElementById('aqi-list').innerHTML=aiqdata2;
+	*/
 
-  // 遍历所有城市
-  aqiData.forEach(function(value, index, array) {
-    allData += '<li>' + num[index + 1] + '、' + value + '</li>';
-  });
+	//方法三，这里使用了filter的功能，对数组进行了迭代，相对于方法二少了一个for循环，但多了个迭代，至于性能，没有测试
+    var aqidata2="";
+	var aqidata1=aqiData.filter(function(item){
+		return item[1]>60;
+	});
 
-  // 写入DOM
-  document.getElementById('aqi-list').innerHTML = res;
-  document.getElementById('aqi-all').innerHTML = allData;
+	aqidata1.sort(function(a,b){
+		return b[1]-a[1];
+	});
 
+	for (var i = 0,j=aqidata1.length; i < j; i++) {
+		aqidata2+="<li>NO."+(i+1)+": "+aqidata1[i][0]+","+aqidata1[i][1]+"</li>";
+	}
 
+	document.getElementById('aqi-list').innerHTML=aqidata2;
+
+  
 })();
 
 </script>
