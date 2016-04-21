@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-compatible" content="IE=Edge, Chrome=1">
+	<title>任务二十一：基础JavaScript练习（四）</title>
+	<style>
+		.queue-wrap {
+			box-sizing: border-box;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			height: 50px;
+			background-color: #ccc;
+		}
+		.queue-wrap span {
+			display: inline-block;
+			margin-right: 20px;
+			padding: 10px;
+			color: #fff;
+			background-color: green;
+		}
+		.queue-wrap span:hover {
+			background-color: red;
+			cursor: pointer;
+		}
+		.queue-wrap span:hover::before {
+			content: '删除';
+		}
+	</style>
+</head>
+<body>
+	<input type="text" id="tags">
+	<div class="queue-wrap show-tags"></div>
+	<textarea name="hobby" id="hobby" cols="30" rows="10" placeholder="请输入爱好，并用符号分隔"></textarea>
+	<button id="hobby_btn">确认兴趣爱好</button>
+	<div class="queue-wrap show-hobby"></div>
+
+	<script src="main.js"></script>
+</body>
+</html>
