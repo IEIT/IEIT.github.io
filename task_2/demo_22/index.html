@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>任务二十二：JavaScript和树（一）</title>
+  <style>
+    .my-box {
+      display: flex;
+      flex: auto;
+      justify-content: space-between;
+
+      margin-left: 5px;
+      margin-right: 5px;
+      padding: 20px 5px 20px 5px;
+      border: 1px solid #ccc;
+    }
+
+    .handle {
+      display: flex;
+      justify-content: space-between;
+      height: 50px;
+    }
+
+    .btn {
+      flex: auto;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <div class="handle">
+    <button class="btn" id="pre" type="button" name="button"> 先序遍历 </button>
+    <button class="btn" id="mid" type="button" name="button"> 中序遍历 </button>
+    <button class="btn" id="post" type="button" name="button"> 后序遍历 </button>
+  </div>
+
+  <script type="text/javascript">
+    // 有 k 层，则为 2 k次方 - 1
+    function Node(data, left, right) {
+      this.data = data
+      this.left = left
+      this.right = right
+      this.show = show
+    }
+
+    function show() {
+      return this.data
+    }
+
+    function BST() {
+      this.root = null
+      this.insert = insert
+      this.inOrder = inOrder
+      this.preOrder = preOrder
+      this.postOrder = postOrder
+    }
+
+    // 插入数据
+    function insert(data) {
+      let n = new Node(data, null, null)
+
+      if(this.root === null) {
+        this.root = n
+      } else {
+        let current = this.root,
+            parent
+
+        while (true) {
+          if(data < current.data) {
+            if(current.left === null) {
+              current.left = n
+              return
+            } else {
+              current = current.left
+            }
+          } else {
+            if(current.right === null) {
+              current.right = n
+              return
+            } else {
+              current = current.right
+            }
+          }
+        }
+
+      }
+    }
+
+    // 中序遍历代码
+    function inOrder(node, res) {
+      if(node != null) {
+        arguments.callee(node.left, res)
+        console.log(node.data)
+        res.push(node.data)
+        arguments.callee(node.right, res)
+      }
+    }
+
+    // 先序遍历代码
+    function preOrder(node, res) {
+      if(node != null) {
+        res.push(node.data)
+        console.log(node.data)
+
+        arguments.callee(node.left, res)
+        arguments.callee(node.right, res)
+      }
+    }
+
+    // 后序遍历
+    function postOrder(node, res) {
+      if(node != null) {
+        arguments.callee(node.left, res)
+        arguments.callee(node.right, res)
+
+        console.log(node.data)
+        res.push(node.data)
+      }
+    }
+
+    // 改变背景颜色
+    function changeBg(id) {
+      let doms = document.getElementsByClassName('my-box')
+
+      for (var i = 0; i < doms.length; i++) {
+        doms[i].style.backgroundColor = '#fff'
+      }
+
+      document.getElementById(id).style.backgroundColor = 'orange'
+    }
+
+
+  /********************** 生成页面 **********************/
+  // 生成 1~100 之间，num 个元素的数组
+  function createRandom(num) {
+    let res = []
+
+    while (res.length < num) {
+      // res.push(parseInt(Math.random() * 101))
+      res.push(res.length + 1)
+    }
+
+    return res.sort(compare)
+  }
+
+  function compare(val1, val2) {
+    if (val1 < val2) {
+      return -1
+    } else if (val1 > val2) {
+      return 1
+    } else {
+      return 0
+    }
+  }
+
+  var midRes = []
+
+  function midSort(arr) {
+    if(arr.length > 0) {
+      let index = Math.floor(arr.length / 2)
+
+        midRes.push(arr.splice(index, 1)[0])
+
+        arguments.callee(arr.splice(0, index))
+        arguments.callee(arr)
+    }
+  }
+
+  // 生成页面
+  function createApp(node) {
+    let id = arguments[1] || 'app'
+
+    if(node != null) {
+      let dad = document.getElementById(id),
+          son = document.createElement('div')
+
+      son.className = 'my-box'
+      son.id = node.data
+      dad.appendChild(son)
+
+      arguments.callee(node.left, node.data)
+      arguments.callee(node.right, node.data)
+    }
+  }
+
+  // 创建一个二叉树
+  {
+    var appBST = new BST(),
+        appData = createRandom(15)
+
+    console.log(appData)
+
+    midRes = []
+    midSort(appData)
+    appData = midRes
+
+    console.log(appData)
+
+    appData.map(data => {
+      appBST.insert(data)
+    })
+    console.log(appBST)
+    createApp(appBST.root)
+  }
+
+  /********************** 绑定事件 **********************/
+
+    function runApp() {
+      let doms = ['pre', 'mid', 'post']
+
+      doms.map(item => {
+        document.getElementById(item).onclick = function(event) {
+          let res = [],
+              myTime = 100
+
+          if(item == 'pre') appBST.preOrder(appBST.root, res)
+
+          if(item == 'mid') appBST.inOrder(appBST.root, res)
+
+          if(item == 'post') appBST.postOrder(appBST.root, res)
+
+          res.map(id => {
+            setTimeout(function() {
+              changeBg(id)
+            }, myTime)
+
+            myTime += 200
+          })
+        }
+      })
+    }
+
+  runApp()
+
+  </script>
+</body>
+</html>
