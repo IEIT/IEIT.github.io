@@ -74,10 +74,12 @@
           current = arguments[0] || root,
           currentVal = current.firstChild.nodeValue.toLowerCase(),
           myOrder = arguments[1] || 'mid',
-          searchVal = arguments[2].toLowerCase() || '',
+          searchVal = arguments[2] || '',
           nextNode = current.nextSibling,
           firstChild = current.getElementsByTagName('div')[0],
           that = arguments.callee
+
+      searchVal = searchVal.toLowerCase()
 
       console.log(currentVal.trim())
 
@@ -97,7 +99,7 @@
 
       if(myOrder == 'mid') {
         myNodes.push(current)
-        if(currentVal.trim() == searchVal.trim()) {
+        if(arguments[2] && currentVal.trim() == searchVal.trim()) {
           console.log('zzzzzz')
           throw new Error('oook')
         }
