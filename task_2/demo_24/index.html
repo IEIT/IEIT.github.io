@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>任务二十四：JavaScript和树（三）</title>
+  <style>
+    div {
+      display: flex;
+      justify-content: center;
+      flex: auto;
+      border: 0.5px solid #ccc;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background-color: #fff;
+    }
+  </style>
+
+  <script type="text/javascript" defer>
+    // function Tree() {
+    //   this.root = arguments[0] || document.querySelector('div')
+    //   this.current = this.root
+    //
+    // }
+
+    var selNode = []
+
+    // 遍历按钮事件绑定
+    function bindBtn() {
+      let btns = [].slice.call(document.getElementsByName('traversal'), 0)
+
+      btns.map(btn => {
+        btn.onclick = function() {
+          let myTime = 500
+          searchNode(null, btn.id)
+
+          myNodes.map((node, index) => {
+            setTimeout(function(){
+              changeColor(node)
+            }, myTime)
+            console.log(node.firstChild.nodeValue)
+            myTime += 500
+          })
+
+          setTimeout(cleanColor, myTime)
+          myNodes = []
+        }
+      })
+    }
+
+    // 搜索事件绑定
+    function bindSearch() {
+      document.getElementById('search').onclick = function() {
+        let val = document.getElementById('val').value,
+            myTime = 500
+
+        try {
+          searchNode(null, 'mid', val)
+          myNodes = []
+          alert('找不到耶')
+        } catch (e) {
+          console.log(e)
+          if (e == 'find') {
+            myNodes.map((node, index) => {
+              setTimeout(function(){
+                changeColor(node)
+              }, myTime)
+
+              myTime += 500
+            })
+
+            myNodes = []
+          }
+
+        } finally {
+
+        }
+      }
+    }
+
+    // 添加子节点
+    function bindAdd() {
+      document.getElementById('add').onclick = function() {
+        let val = document.getElementById('val').value,
+            parent = selNode || document,
+            div = document.createElement('div')
+
+        div.appendChild(document.createTextNode(val))
+        div.onclick = function(e) {
+          bundleClick(e, div)
+        }
+
+        parent.appendChild(div)
+      }
+    }
+
+    // 删除事件绑定
+    function bindDel() {
+      document.getElementById('del').onclick = function() {
+        console.log(selNode)
+        selNode.remove()
+      }
+    }
+
+    // 所有 div 遍历按钮绑定
+    function bindClick() {
+      let root = document.querySelector('div'),
+          nodeArray = [].slice.call(root.querySelectorAll('div'), 0)
+
+      nodeArray.push(root)
+
+      nodeArray.map(node => {
+        console.log(node.firstChild.nodeValue)
+        node.onclick = function(e) {
+          bundleClick(e, node)
+        }
+      })
+    }
+
+    // 点击函数
+    function bundleClick(e, node) {
+      e.stopPropagation()
+      cleanColor()
+      node.style.backgroundColor = 'blue'
+      selNode = node
+    }
+
+
+    // searchNode(节点，遍历顺序，查找文字)
+    var myNodes = []
+    function searchNode() {
+      let root = document.getElementsByTagName('div')[0],
+          current = arguments[0] || root,
+          currentVal = current.firstChild.nodeValue.toLowerCase(),
+          myOrder = arguments[1] || 'mid',
+          searchVal = arguments[2] || '',
+          nextNode = current.nextElementSibling,
+          firstChild = current.getElementsByTagName('div')[0],
+          that = arguments.callee
+
+      searchVal = searchVal.toLowerCase()
+
+      console.log(currentVal.trim())
+
+      if(myOrder == 'pre') myNodes.push(current)
+
+      if (nextNode != null && current != root) {
+        that(nextNode, myOrder, searchVal)
+      }
+
+      if(myOrder == 'mid') {
+        myNodes.push(current)
+        if(arguments[2] && currentVal.trim() == searchVal.trim()) {
+          throw 'find'
+        }
+      }
+
+      if(firstChild != null) {
+        that(firstChild, myOrder, searchVal)
+      }
+
+      if(myOrder == 'post') myNodes.push(current)
+    }
+
+    // 改变节点颜色
+    function changeColor(node) {
+        cleanColor()
+        node.style.backgroundColor = 'red'
+        selNode = node
+    }
+
+    // 清理节点背景
+    function cleanColor() {
+      var divNodes = [].slice.call(document.querySelectorAll('div'), 0)
+
+      divNodes.map(div => {
+        div.style.backgroundColor = '#fff'
+      })
+    }
+
+    // 去除空格
+    String.prototype.trim = function() {
+      return this.replace(/\s+/g, "");
+    }
+
+    setTimeout(function(){
+      bindBtn()
+      bindSearch()
+      bindClick()
+      bindDel()
+      bindAdd()
+    }, 0)
+
+  </script>
+</head>
+
+<body>
+  <div>
+    Super
+    <div>
+      one
+      <div>
+        Apple
+        <div>Pear</div>
+        <div>Pig</div>
+        <div>Cola</div>
+        <div>Soccer</div>
+      </div>
+      <div>
+        Phone
+      </div>
+      <div>
+        <div>Book</div>
+        <div>School</div>
+      </div>
+    </div>
+
+    <div>
+      Note
+      <div>
+        Human
+        <div>Code</div>
+        <div>Operate</div>
+        <div>Man</div>
+      </div>
+      <div>
+        Program
+        <div>
+          Dog
+          <div>
+            Cat
+          </div>
+        </div>
+        <div>Class</div>
+      </div>
+    </div>
+
+    <div>
+      Fish
+    </div>
+  </div>
+
+  <div>
+    <button type="button" name="traversal" id="pre">前序遍历</button>
+    <button type="button" name="traversal" id="mid">中序遍历</button>
+    <button type="button" name="traversal" id="post">后序遍历</button>
+  </div>
+
+  <div>
+    <input type="text" name="name" value="" id="val" />
+    <button type="button" name="search" id="search">搜索</button>
+    <button type="button" name="add" id="add">添加为子节点</button>
+    <button type="button" name="del" id="del">删除</button>
+  </div>
+</body>
+</html>
