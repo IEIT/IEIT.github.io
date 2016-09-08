@@ -167,6 +167,8 @@ function searchNode(btnID, inputID) {
         val = document.getElementById(inputID).value,
         pattern = new RegExp(val, 'i')
 
+    walker.currentNode = root
+    
     while (node !== null) {
       if (pattern.test(node.innerText)) {
         if (current) current.style.color = 'black'
