@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>任务二十五：JavaScript和树（四）</title>
+  <style>
+    .my-tab {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      /*flex: auto;*/
+      flex-grow: 0;
+      margin-left: 2em;
+      /*border: 0.5px solid #ccc;*/
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background-color: #fff;
+
+      cursor: pointer;
+    }
+
+    span:hover {
+      background: yellow;
+    }
+
+    .down {
+      position: absolute;
+      margin-left: -1em;
+
+      width: 0;
+      height: 0;
+      border-top: 1em solid red;
+      border-left: 0.5em solid transparent;
+      border-right: 0.5em solid transparent;
+
+      content: '.';
+      color: transparent;
+    }
+
+    .right {
+      position: absolute;
+      margin-left: -1em;
+
+      width: 0;
+      height: 0;
+      border-left: 1em solid red;
+      border-top: 0.5em solid transparent;
+      border-bottom: 0.5em solid transparent;
+
+      content: '.';
+      color: transparent;
+    }
+
+    input {
+      background-color: yellow;
+      text-align: center;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: rgba(255, 0, 0, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main"></div>
+
+  <div>
+    <input type="text" name="name" value="" id="val" />
+    <button type="button" name="search" id="search">搜索</button>
+    <button type="button" name="add" id="add">添加为子节点</button>
+    <button type="button" name="del" id="del">删除</button>
+  </div>
+
+  <script type="text/javascript" src="demo25.js"></script>
+</body>
+</html>
