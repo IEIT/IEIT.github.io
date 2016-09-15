@@ -69,7 +69,7 @@ var demos = {
     {23: 'Task 2-23：JavaScript和树（二）'},
     {24: 'Task 2-24：JavaScript和树（三）'},
     {25: 'Task 2-25：JavaScript和树（四）'},
-    {26: '任务二十六：行星与飞船（一）'},
+    {26: 'Task 2-26：行星与飞船（一）'},
   ],
   _trans: (function() {
     let template = `<p>
