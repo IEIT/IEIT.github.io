@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>任务二十六：行星与飞船（一）</title>
+  <style media="screen">
+    .space {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 500px;
+      background-color: black;
+    }
+
+    .earth {
+      width: 200px;
+      height: 200px;
+      border-radius: 100px;
+      background-color: blue;
+    }
+
+    .spaceship {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 15px;
+      background-color: red;
+    }
+  </style>
+  <script type="text/javascript" src="./demo_26.js"></script>
+</head>
+<body>
+  <div class="space">
+    <div class="earth"></div>
+  </div>
+
+  <div class="control-box">
+    <!-- 飞船控制台 -->
+  </div>
+
+  <p>
+    <button type="button" name="button" id="create_ship">新的飞船起飞</button>
+  </p>
+</body>
+</html>

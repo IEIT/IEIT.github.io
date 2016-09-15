@@ -168,7 +168,7 @@ function searchNode(btnID, inputID) {
         pattern = new RegExp(val, 'i')
 
     walker.currentNode = root
-    
+
     while (node !== null) {
       if (pattern.test(node.innerText)) {
         if (current) current.style.color = 'black'
@@ -179,6 +179,8 @@ function searchNode(btnID, inputID) {
 
       node = walker.nextNode()
     }
+
+
   })
 }
 
