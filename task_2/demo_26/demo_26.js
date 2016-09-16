@@ -1,12 +1,13 @@
 var allShip = {},
-    radius = [100, 150, 200, 250]
+    radius = [130, 170, 210, 250]
 
 /********************** 飞船系统 **********************/
 function SpaceShip() {
   this.id = arguments[0]
   this.status = 'stop' // stop | run
   this.energy = 100
-  this.radius = radius.shift()
+  this.radius = radius.shift() // 预订轨道高度
+  this.radius_now = 100 // 当前轨道高度
   this.interval = undefined
   this.angle = 0
 
@@ -17,20 +18,30 @@ SpaceShip.prototype = {
   constructor: SpaceShip,
   receiver: function(commond) {
     let ship_dom = this,
-        run = this.run
+        run = this.run,
+        land = this.land
 
     switch (commond) {
       case 'destroy':
         this.destroy()
         break;
       case 'begin':
+        if (ship_dom.interval) clearInterval(ship_dom.interval)
+
         this.interval = setInterval(function() {
           run(ship_dom)
-        }, 500)
+        }, 50)
         break;
       case 'stop':
         this.stop()
         break;
+      case 'charge':
+        if (ship_dom.interval) clearInterval(ship_dom.interval)
+
+        this.interval = setInterval(function() {
+          land(ship_dom)
+        }, 50)
+        break
       default:
         console.log('命令错误：' + commond)
     }
@@ -49,7 +60,8 @@ SpaceShip.prototype = {
     },
   run: function() {
       let that = arguments[0],
-          speed = arguments[1] || 0.1,
+          speed = arguments[1] || 0.5,
+          ff = 180,
           id = that.id,
           earth = document.querySelector('.earth'),
           ship = document.getElementById(id),
@@ -57,14 +69,27 @@ SpaceShip.prototype = {
           angle,
           energy
 
-      that.angle += speed
-      angle = that.angle
-
       if (that.energy > 0) {
-        that.energy -= 2
-        ship.innerText = that.energy
-        ship.style.left = earth.offsetLeft + 100 + (Math.cos(angle)*radius) - 15 + 'px'
-        ship.style.top = earth.offsetTop + 100 + (Math.sin(angle)*radius) - 15 + 'px'
+        that.energy -= 0.1
+        ship.innerText = Math.floor(that.energy)
+
+        if (that.radius_now < that.radius) {
+          that.angle += Math.PI / ff
+          that.radius_now += speed
+          angle = that.angle
+          radius = that.radius_now
+
+          ship.style.left = earth.offsetLeft + 100 + (Math.cos(angle)*radius) - 15 + 'px'
+          ship.style.top = earth.offsetTop + 100 - (Math.sin(angle)*radius) - 15 + 'px'
+        } else {
+          that.angle += Math.PI / ff
+          angle = that.angle
+
+          ship.style.backgroundColor = 'green'
+          ship.style.left = earth.offsetLeft + 100 + (Math.cos(angle)*radius) - 15 + 'px'
+          ship.style.top = earth.offsetTop + 100 - (Math.sin(angle)*radius) - 15 + 'px'
+        }
+
       } else {
         clearInterval(that.interval)
       }
@@ -72,6 +97,53 @@ SpaceShip.prototype = {
     },
   stop: function() {
     clearInterval(this.interval)
+  },
+  land: function() {
+    let that = arguments[0],
+        speed = arguments[1] || 0.5, // 直线移动速度
+        ff = 180, // 转动速度
+        id = that.id,
+        earth = document.querySelector('.earth'),
+        ship = document.getElementById(id),
+        radius,
+        angle,
+        energy,
+        charge = that.charge
+
+    that.angle += Math.PI / ff
+    that.radius_now -= speed
+    angle = that.angle
+    radius = that.radius_now
+
+    if (that.radius_now > 100) {
+      ship.style.left = earth.offsetLeft + 100 + (Math.cos(angle)*radius) - 15 + 'px'
+      ship.style.top = earth.offsetTop + 100 - (Math.sin(angle)*radius) - 15 + 'px'
+    } else {
+      clearInterval(that.interval)
+      that.interval = setInterval(function() {
+        charge(that)
+      }, 500)
+    }
+  },
+  charge: function() {
+    let that = arguments[0],
+        speed = 5,
+        id = that.id,
+        ship = document.getElementById(id)
+
+    if (that.energy < 100) {
+      that.energy += speed
+      if (that.energy > 100) that.energy = 100
+
+      ship.style.backgroundColor == 'red' ?
+      ship.style.backgroundColor = 'gray' :
+      ship.style.backgroundColor = 'red'
+
+      ship.innerText = Math.floor(that.energy)
+    } else {
+      ship.style.backgroundColor = 'red'
+      clearInterval(that.interval)
+    }
   }
 }
 
@@ -80,7 +152,7 @@ function shipInit(ship_obj) {
   let ship = document.createElement('div'),
       earth = document.querySelector('.earth'),
       space = document.querySelector('.space'),
-      radius = ship_obj.radius,
+      radius = ship_obj.radius_now,
       angle = ship_obj.angle
 
   ship.className = 'spaceship'
@@ -100,6 +172,7 @@ function Commond(ship_id) {
       btn_begin = document.createElement('button'),
       btn_stop = document.createElement('button'),
       btn_destroy = document.createElement('button'),
+      btn_charge = document.createElement('button'),
       control_box = document.querySelector('.control-box')
 
   controller.id = 'c' + ship_id
@@ -112,34 +185,27 @@ function Commond(ship_id) {
   btn_stop.innerText = '停止飞行'
   btn_destroy.className = 'destroy'
   btn_destroy.innerText = '销毁'
+  btn_charge.className = 'charge'
+  btn_charge.innerText = '充能'
+
 
   controller.appendChild(span)
   controller.appendChild(btn_begin)
   controller.appendChild(btn_stop)
+  controller.appendChild(btn_charge)
   controller.appendChild(btn_destroy)
 
   controller.addEventListener('click', function(event) {
     let id = event.target.parentNode['data-ship_id']
 
-    switch (event.target.className) {
-      case 'begin':
-        Mediator({id: id, commond: 'begin'})
-        break;
-      case 'stop':
-        Mediator({id: id, commond: 'stop'})
-        break
-      case 'destroy':
-        Mediator({id: id, commond: 'destroy'})
-        break
-      default:
-        console.log('controller bug')
-    }
-
+    Mediator({id: id, commond: event.target.className})
   })
+
   control_box.appendChild(controller)
 }
 
-// 介质 参数 {id:1, commond: 'stop'}
+/********************** 介质 **********************/
+//  参数 {id:1, commond: 'stop'}
 function Mediator() {
   let message = arguments[0],
       spaceship = allShip[message.id],
@@ -156,41 +222,8 @@ function Mediator() {
   }
 }
 
-/************************/
-
-// if (ship === undefined) {
-//   let space = document.querySelector('.space')
-//
-// }
-//
-// console.log(earth.offsetLeft)
-//
-//
-// angle += 0.1
-//
-// // 事件代理
-// function bindBtn() {
-//   let shipControl = document.getElementById('ship_1')
-//
-//   shipControl.addEventListener('click', function(event) {
-//     switch (event.target.className) {
-//       case 'begin':
-//         intervalID1 = setInterval(SpaceShip, 50)
-//         break;
-//       case 'stop':
-//         clearInterval(intervalID1)
-//         break
-//       case 'destroy':
-//         document.querySelector('.spaceship').remove()
-//         break
-//       default:
-//         console.log('bindBtn bug')
-//     }
-//   })
-// }
-
+/********************** 新建飞船 **********************/
 document.addEventListener('DOMContentLoaded', function() {
-  // intervalID1 = setInterval(SpaceShip, 50)
   let create_ship =  document.getElementById('create_ship')
 
   create_ship.onclick = function() {
@@ -206,5 +239,4 @@ document.addEventListener('DOMContentLoaded', function() {
     Commond(id) // 生成控制台
     console.log(ship)
   }
-
 }, false)
